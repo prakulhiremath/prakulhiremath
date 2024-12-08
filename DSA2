@@ -25,9 +25,8 @@ else
 {
 break;
 }
-pattern string
 {
-if(iMtchCnt == strlen(acSrchStr)) //Check if number of character matches equals length of
+if(iMtchCnt == strlen(acSrchStr)) //Check if number of character matches equals length of pattern string
 iNumOfMatch++; for(k=0;k<i;k++)
 //update number of total matches by 1
 {
