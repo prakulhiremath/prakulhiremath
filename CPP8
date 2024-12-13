@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+ 
+// Base class
+class Alpha
+{
+    protected:
+        int alpha;
+    public:
+        // Constructor to initialize alpha
+        Alpha(int a) : alpha(a) {}
+};
+ 
+// Derived class from Alpha
+class Beta : public Alpha
+{
+    protected:
+        int beta;
+    public:
+        // Constructor to initialize alpha and beta
+        Beta(int a, int b) : Alpha(a), beta(b) {}
+};
+ 
+// Derived class from Beta
+class Gamma : public Beta
+{
+    private:
+        int gamma;
+    public:
+    // Constructor to initialize alpha, beta and gamma
+    Gamma(int a, int b, int c) : Beta(a, b), gamma(c) {}
+ 
+    void display()
+    {
+        cout << "Alpha: " << alpha << ", Beta: " << beta << ", Gamma: " << gamma << endl;
+    }
+};
+ 
+int main()
+{
+    Gamma g(1, 2, 3);
+    g.display();
+    return 0;
+}
