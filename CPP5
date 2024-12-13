@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+ 
+class Add {
+public:
+   Add(int a, int b) {
+       cout << "Sum of integers: " << a + b << endl;
+   }
+ 
+   Add(double a, double b) {
+       cout << "Sum of doubles: " << a + b << endl;
+   }
+};
+ 
+int main()
+{
+   int a = 5, b = 10;
+   double x = 5.5, y = 10.5;
+ 
+   // Creating objects of class Add
+   Add addInt(a, b);
+   Add addDouble(x, y);
+ 
+   return 0;
+}
