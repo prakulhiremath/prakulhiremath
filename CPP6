@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+class NUM
+{
+   private:
+       int n;
+   public:
+       void getNum(int x)     //function to get number
+       {
+           n=x;
+       }
+       void dispNum(void)     //function to display number
+       {
+           cout << "value of n is: " << n;
+       }
+       //unary - operator overloading
+       void operator -(void)
+       {
+           n=-n;
+       }
+};
+int main()
+{
+   NUM num;
+   num.getNum(10);
+   -num;
+   num.dispNum();
+   cout << endl;
+   return 0;
+}
