@@ -1,0 +1,121 @@
+#include <iostream>
+using namespace std;
+// Base class for addition
+class Add
+{
+    protected:
+        int sum; // variable to store the sum
+    public:
+        // constructor to initialize sum to zero
+        Add()
+        {
+            sum = 0;
+        }
+        // function to add two numbers
+        void add(int a, int b)
+        {
+            sum = a + b;
+        }
+        // function to display the sum
+        void displaySum() {
+            cout << "The sum is " << sum << endl;
+        }
+};
+ 
+// Base class for subtraction
+class Subtract
+{
+    protected:
+        int diff; // variable to store the difference
+    public:
+        // constructor to initialize diff to zero
+        Subtract()
+        {
+            diff = 0;
+        }
+        // function to subtract two numbers
+        void subtract(int a, int b)
+        {
+            diff = a - b;
+        }
+        // function to display the difference
+        void displayDiff()
+        {
+            cout << "The difference is " << diff << endl;
+        }
+};
+ 
+// Base class for Multipication
+class Multiple
+{
+    protected:
+        int mul; // variable to store the multiplication
+    public:
+        // constructor to initialize mul to zero
+        Multiple()
+        {
+            mul = 0;
+        }
+        // function to multiple two numbers
+        void multiple(int a, int b)
+        {
+            mul = a * b;
+        }
+        // function to display the multiple
+        void displayMul()
+        {
+            cout << "The Multiplication is " << mul << endl;
+        }
+};
+ 
+// Base class for  Division
+class Division
+{
+    protected:
+        int div; // variable to store the division
+    public:
+        // constructor to initialize diff to zero
+        Division()
+        {
+            div = 0;
+        }
+        // function to division two numbers
+        void division(int a, int b)
+        {
+            div = a / b;
+        }
+        // function to display the division
+        void displayDiv()
+        {
+            cout << "The Division is " << div << endl;
+        }
+};
+// Derived class for arithmetic operations
+class Arithmetic : public Add, public Subtract, public Multiple, public Division{
+    public:
+        // function to perform arithmetic operations on two numbers
+        void arithmetic(int a, int b) {
+            // call the functions of base classes
+            add(a, b);
+            subtract(a, b);
+            multiple(a, b);
+            division(a, b);
+ 
+            // display the results
+            displaySum();
+            displayDiff();
+            displayMul();
+            displayDiv();
+        }
+};
+ 
+// Driver code
+int main() {
+    // create an object of derived class
+    Arithmetic obj;
+    // declare two numbers
+    int x = 20, y = 5;
+    // perform arithmetic operations on them
+    obj.arithmetic(x, y);
+    return 0;
+}
