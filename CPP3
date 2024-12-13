@@ -1,0 +1,36 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+
+class Student
+ {
+  public:
+    string name;
+    int rno;
+    int mrks1;
+    int mrks2;
+    int total_score()
+    {
+      return mrks1 + mrks2;
+    }
+};
+
+int main() 
+{
+  Student s1;
+  cout << "Enter the name of the student: ";
+  cin >> s1.name;
+  cout << "Enter the roll number of the student: ";
+  cin >> s1.rno;
+  cout << "Enter the marks of the student in subject 1: ";
+  cin >> s1.mrks1;
+  cout << "Enter the marks of the student in subject 2: ";
+  cin >> s1.mrks2;
+  cout<<"--------THE STUDENT DETAILS-------"<<endl;
+  cout << "The name of the student is: " << s1.name << endl;
+  cout << "The roll number of the student is: " << s1.rno << endl;
+  cout << "The marks of the student in subject 1 are: " << s1.mrks1 << endl;
+  cout << "The marks of the student in subject 2 are: " << s1.mrks2 << endl;
+  cout << "The total score of the student is: " << s1.total_score() << endl;
+  return 0;
+}
