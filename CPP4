@@ -1,0 +1,106 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+class BankDetails
+{
+private:
+   char name[100];
+   int accNo;
+   float balance;
+ 
+public:
+   // Constructor to initialize member variables
+   BankDetails(char *n, int acc, float bal)
+   {
+       strcpy(name, n);
+       accNo = acc;
+       balance = bal;
+   }
+ 
+   // Member functions
+   void deposit()
+   {
+       float amt;
+       cout << "ENTER THE AMOUNT TO BE DEPOSITED\n";
+       cin >> amt;
+       balance += amt;
+   }
+ 
+   void withdraw()
+   {
+       float amt;
+       cout << "ENTER THE AMOUNT TO BE WITHDRAWN\n";
+       cin >> amt;
+       if (amt > balance)
+       {
+           cout << "Insufficient balance\n";
+       }
+       else
+       {
+           balance -= amt;
+       }
+   }
+ 
+   void display()
+   {
+       cout << "\n -----------Bank Details-----------";
+       cout << "\n Account No. : " << accNo;
+       cout << "\n Name : " << name;
+       cout << "\n Balance : " << balance;
+       cout << "\n ----------------------";
+   }
+};
+ 
+int main()
+{
+   int acc_no;
+   char name[100];
+   float balance;
+ 
+   cout << "\n Enter Details: \n";
+   cout << "-----------------------";
+   cout << "\n Account No. ";
+   cin >> acc_no;
+   cout << "\n Name : ";
+   cin >> name;
+   cout << "\n Balance : ";
+   cin >> balance;
+ 
+   if (balance <= 500)
+   {
+       cout << "\n Invalid balance\n";
+   }
+   else
+   {
+       BankDetails b1(name, acc_no, balance);
+       b1.display();
+       for (;;)
+       {
+           int n;
+           cout << "\n 1 for deposit: " << endl
+                << " 2 for withdrawl:" << endl
+                << "3 to exit: " << endl;
+ 
+           cin >> n;
+           if (n == 3)
+           {
+               break;
+           }
+           switch (n)
+           {
+           case 1:
+               b1.deposit();
+               b1.display();
+               break;
+           case 2:
+               b1.withdraw();
+               b1.display();
+               break;
+           default:
+               cout << "invalid choice" << endl;
+               break;
+           }
+       }
+   }
+return 0;
+}
