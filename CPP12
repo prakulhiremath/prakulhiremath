@@ -1,0 +1,20 @@
+#include <iostream>
+#include <stdexcept>
+Using namespace std;
+ 
+int main() {
+   try {
+       int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+       // Accessing out of bounds will throw an exception
+       for(int i = 0; i <= 10; i++) {
+           if(i == 10) {
+               throw out_of_range("Array index out of bound");
+           }
+           cout << "arr[" << i << "] = " << arr[i] << endl;
+       }
+   } catch(const std::out_of_range& e) {
+       cerr << "Caught exception: " << e.what() << endl;
+   }
+ 
+   return 0;
+}
