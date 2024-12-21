@@ -1,0 +1,47 @@
+#include<stdio.h>
+void main() {
+int p[20], bt[20], pri[20], wt[20], tat[20], i, k, n, temp;
+float wtavg = 0, tatavg = 0;
+printf("Enter the number of processes: ");
+scanf("%d", &n);
+// Input Burst Time and Priority for each process
+for(i = 0; i < n; i++) {
+p[i] = i; // Process ID
+printf("Enter the Burst Time & Priority of Process %d: ", i + 1);
+scanf("%d %d", &bt[i], &pri[i]);
+}
+// Sorting processes based on priority (ascending order)
+for(i = 0; i < n; i++) {
+for(k = i + 1; k < n; k++) {
+if(pri[i] > pri[k]) {
+// Swap Process IDs
+temp = p[i]; p[i] = p[k]; p[k] = temp;
+// Swap Burst Times
+temp = bt[i]; bt[i] = bt[k]; bt[k] = temp;
+// Swap Priorities
+temp = pri[i]; pri[i] = pri[k]; pri[k] = temp;
+}
+}
+}
+// Calculating Waiting Time and Turnaround Time
+wt[0] = 0; // Waiting time for the first process is always 0
+tat[0] = bt[0]; // Turnaround time for the first process is equal to its burst time
+// Calculating waiting and turnaround times for subsequent processes
+for(i = 1; i < n; i++) {
+wt[i] = wt[i - 1] + bt[i - 1]; // Waiting time of current process
+tat[i] = tat[i - 1] + bt[i]; // Turnaround time of current process
+}
+// Calculate total waiting and turnaround time
+for(i = 0; i < n; i++) {
+wtavg += wt[i];
+tatavg += tat[i];
+}
+// Output the results
+printf("\nPROCESS\t\tPRIORITY\tBURST TIME\tWAITING TIME\tTURNAROUND TIME\n");
+for(i = 0; i < n; i++) {
+printf("%d \t\t %d \t\t %d \t\t %d \t\t %d \n", p[i] + 1, pri[i], bt[i], wt[i], tat[i]);
+}
+// Display average waiting and turnaround time
+printf("\nAverage Waiting Time is: %.2f", wtavg / n);
+printf("\nAverage Turnaround Time is: %.2f", tatavg / n);
+}
