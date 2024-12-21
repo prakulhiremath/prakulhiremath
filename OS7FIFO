@@ -1,0 +1,60 @@
+#include <stdio.h>
+int main() {
+int i, j, n, a[50], frame[10], no, k, avail, count = 0;
+// Input for the number of pages
+printf("\nENTER THE NUMBER OF PAGES:\n");
+scanf("%d", &n);
+// Input for the page reference string
+printf("\nENTER THE PAGE NUMBERS:\n");
+for(i = 0; i < n; i++) {
+scanf("%d", &a[i]);
+}
+// Input for the number of frames
+printf("\nENTER THE NUMBER OF FRAMES: ");
+scanf("%d", &no);
+// Initialize all frames to -1, indicating empty frames
+for(i = 0; i < no; i++) {
+frame[i] = -1;
+}
+j = 0; // Pointer for the next frame to replace
+printf("\n\tReference String\tPage Frames\n");
+// Page Replacement Process
+for(i = 0; i < n; i++) {
+printf("\t%d\t\t", a[i]);
+avail = 0;
+// Check if the page is already in a frame (no page fault)
+for(k = 0; k < no; k++) {
+if(frame[k] == a[i]) {
+avail = 1;
+break;
+}
+}
+// If the page is not found, a page fault occurs
+if (avail == 0) {
+frame[j] = a[i]; // Place the page in the next available frame
+j = (j + 1) % no; // Update the frame pointer using circular indexing
+count++;
+// Print the current frames after the page fault
+for(k = 0; k < no; k++) {
+if(frame[k] == -1) {
+printf("--\t");
+} else {
+printf("%d\t", frame[k]);
+}
+}
+} else {
+// Print the current frames when no page fault occurs
+for(k = 0; k < no; k++) {
+if(frame[k] == -1) {
+printf("--\t");
+} else {
+printf("%d\t", frame[k]);
+}
+}
+}
+printf("\n");
+}
+// Output the total number of page faults
+printf("\nTotal Page Faults: %d\n", count);
+return 0;
+}
