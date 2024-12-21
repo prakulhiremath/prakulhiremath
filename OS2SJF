@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+int p[20], bt[20], wt[20], tat[20], i, k, n, temp;
+float wtavg = 0, tatavg = 0;
+printf("\nEnter the number of processes -- ");
+scanf("%d", &n);
+// Input burst times and initialize process IDs
+for(i = 0; i < n; i++) {
+p[i] = i; // Assign process number
+printf("Enter Burst Time for Process %d -- ", i + 1);
+scanf("%d", &bt[i]);
+}
+// Sort burst times in ascending order using Bubble Sort
+for(i = 0; i < n; i++) {
+for(k = i + 1; k < n; k++) {
+if(bt[i] > bt[k]) {
+// Swap burst times
+temp = bt[i];
+bt[i] = bt[k];
+bt[k] = temp;
+// Swap corresponding process numbers to maintain order
+temp = p[i];
+p[i] = p[k];
+p[k] = temp;
+}
+}
+}
+// Calculate waiting times and turnaround times
+wt[0] = 0; // Waiting time for the first process is 0
+tat[0] = bt[0]; // Turnaround time for the first process is its burst time
+for(i = 1; i < n; i++) {
+wt[i] = wt[i - 1] + bt[i - 1]; // Waiting time is cumulative sum of previous burst times
+tat[i] = tat[i - 1] + bt[i]; // Turnaround time is cumulative burst time
+wtavg += wt[i];
+tatavg += tat[i];
+}
+// Output the results
+printf("\n\tPROCESS\tBURST TIME\tWAITING TIME\tTURNAROUND TIME\n");
+for(i = 0; i < n; i++) {
+printf("\n\tP%d\t\t%d\t\t%d\t\t%d", p[i] + 1, bt[i], wt[i], tat[i]);
+}
+// Calculate and display average waiting time and turnaround time
+printf("\nAverage Waiting Time -- %f", wtavg / n);
+printf("\nAverage Turnaround Time -- %f", tatavg / n);
+return 0;
+}
